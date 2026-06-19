@@ -1,0 +1,30 @@
+name: Executar Testes e Gerar Artefato
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  meu-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Executar teste
+        run: |
+          echo "Executando os testes do projeto..."
+          echo "Testes finalizados com sucesso!"
+
+      - name: Gerar identificador
+        run: |
+          echo "ID de Execução: ${{ github.run_id }} - Tentativa: ${{ github.run_attempt }}" >> instrucoes.txt
+          cat instrucoes.txt
+
+      - name: Disponibilizar artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: meu-artefato-instrucoes
+          path: instrucoes.txt
