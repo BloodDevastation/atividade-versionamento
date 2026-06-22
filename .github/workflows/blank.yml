@@ -20,6 +20,8 @@ jobs:
 
       - name: Gerar identificador
         run: |
+          NOME="Davy Silva Vicente"
+          echo "eu $NOME finalizei o teste de versionamento na data de $(date)" > instrucoes.txt
           echo "ID de Execução: ${{ github.run_id }} - Tentativa: ${{ github.run_attempt }}" >> instrucoes.txt
           cat instrucoes.txt
 
